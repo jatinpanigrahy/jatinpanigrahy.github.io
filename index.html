@@ -3,57 +3,329 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Portfolio</title>
+    <title>Portfolio | Software Engineering</title>
     <style>
+        :root {
+            --bg-color: #0b0c10;
+            --card-bg: rgba(18, 20, 28, 0.75);
+            --card-bg-placeholder: rgba(18, 20, 28, 0.35);
+            --text-main: #ffffff;
+            --text-muted: #8892b0;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.2);
+            --accent-bg: #ffffff;
+            --accent-text: #0b0c10;
+            --btn-hover: #c5c6c7;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+            background-size: 24px 24px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .ambient-glow {
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, rgba(11, 12, 16, 0) 70%);
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        nav {
+            max-width: 1000px;
             margin: 0 auto;
-            max-width: 800px;
-            padding: 50px 20px;
-            color: #333;
-            background-color: #fcfcfc;
+            padding: 40px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        h1 { color: #111; }
-        .project-card {
-            background: #fff;
-            border: 1px solid #ddd;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 8px;
+
+        .nav-left, .nav-right {
+            display: flex;
+            gap: 24px;
         }
-        a.button {
-            display: inline-block;
-            background: #000;
-            color: #fff;
-            padding: 10px 15px;
+
+        nav a {
+            color: var(--text-muted);
             text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--text-main);
+        }
+
+        .hero {
+            max-width: 800px;
+            margin: 80px auto 100px auto;
+            text-align: center;
+            padding: 0 24px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            margin: 0 0 16px 0;
+            color: var(--text-main);
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px 120px 24px;
+        }
+
+        section h2 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 24px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-card.placeholder {
+            background-color: var(--card-bg-placeholder);
+            border-style: dashed;
+        }
+
+        .project-title {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin: 0 0 12px 0;
+            color: var(--text-main);
+        }
+
+        .project-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin: 0 0 24px 0;
+            line-height: 1.6;
+        }
+
+        .tag-list {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 4px 10px;
+            border-radius: 20px;
+            color: var(--text-muted);
+            font-family: monospace;
+        }
+
+        .action-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-bg);
+            color: var(--accent-text);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--btn-hover);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: var(--border-hover);
+        }
+        
+        .btn-disabled {
+            background-color: transparent;
+            color: var(--text-muted);
+            border: 1px dashed var(--border-color);
+            cursor: not-allowed;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Jatin Panigrahy</h1>
-        <p>Software Engineering & Backend Automation</p>
-        <p>Email: your.email@example.com | GitHub: <a href="https://github.com/jatinpanigrahy">@jatinpanigrahy</a></p>
-    </header>
+    <div class="ambient-glow"></div>
 
-    <section>
-        <h2>Technical Portfolio</h2>
-        
-        <!-- PROJECT 1: The Spoke -->
-        <div class="project-card">
-            <h3>Automated Data Dashboard</h3>
-            <p><strong>Stack:</strong> Python, Streamlit, Pandas</p>
-            <p>Built a deployed data application to extract and visualize unstructured information.</p>
-            <!-- You will replace the # below with your Streamlit URL later -->
-            <a href="#" class="button">View Live App</a>
+    <nav>
+        <div class="nav-left">
+            <a href="#work">Work</a>
         </div>
+        <div class="nav-right">
+            <a href="https://github.com/jatinpanigrahy?tab=repositories" target="_blank">GitHub</a>
+        </div>
+    </nav>
 
-    </section>
+    <div class="hero">
+        <h1>Hi, I'm Jatin Panigrahy.</h1>
+        <p>I'm an Engineering Student based in New Delhi.</p>
+    </div>
+
+    <div class="container" id="work">
+        <h2>My Projects</h2>
+        
+        <div class="project-grid">
+            
+            <div class="project-card placeholder">
+                <div>
+                    <h3 class="project-title" style="color: var(--text-muted);">Project Alpha (Incoming)</h3>
+                    <p class="project-desc">Advanced backend pipeline currently under active development. Scheduled for deployment.</p>
+                    <div class="tag-list">
+                        <span class="tag">In Progress</span>
+                        <span class="tag">System Architecture</span>
+                    </div>
+                </div>
+                <div class="action-links">
+                    <span class="btn btn-disabled">Pending Deployment</span>
+                </div>
+            </div>
+
+            <div class="project-card placeholder">
+                <div>
+                    <h3 class="project-title" style="color: var(--text-muted);">Project Beta (Incoming)</h3>
+                    <p class="project-desc">Algorithmic automation tool designed for high-frequency data processing frameworks.</p>
+                    <div class="tag-list">
+                        <span class="tag">In Progress</span>
+                        <span class="tag">Automation</span>
+                    </div>
+                </div>
+                <div class="action-links">
+                    <span class="btn btn-disabled">Pending Deployment</span>
+                </div>
+            </div>
+
+            <div class="project-card placeholder">
+                <div>
+                    <h3 class="project-title" style="color: var(--text-muted);">Project Gamma (Incoming)</h3>
+                    <p class="project-desc">Distributed task management interface utilizing modular asynchronous routines.</p>
+                    <div class="tag-list">
+                        <span class="tag">In Progress</span>
+                        <span class="tag">Distributed Systems</span>
+                    </div>
+                </div>
+                <div class="action-links">
+                    <span class="btn btn-disabled">Pending Deployment</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <h3 class="project-title">Settings Manager</h3>
+                    <p class="project-desc">A simple, interactive web dashboard built to manage, track and visualize user preferences.</p>
+                    <div class="tag-list">
+                        <span class="tag">Python</span>
+                        <span class="tag">Streamlit</span>
+                        <span class="tag">State Management</span>
+                    </div>
+                </div>
+                <div class="action-links">
+                    <a href="https://jatinp-settings.streamlit.app" target="_blank" class="btn btn-primary">Live App</a>
+                    <a href="https://github.com/jatinpanigrahy/settings-manager" target="_blank" class="btn btn-secondary">Source Code</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <h3 class="project-title">Budget Application</h3>
+                    <p class="project-desc">A minimal, responsive web application built to track personal finances, manage category-based budgets, and analyze spending distributions.</p>
+                    <div class="tag-list">
+                        <span class="tag">Python</span>
+                        <span class="tag">Streamlit</span>
+                        <span class="tag">Pandas</span>
+                    </div>
+                </div>
+                <div class="action-links">
+                    <a href="https://jatinp-budget.streamlit.app/" target="_blank" class="btn btn-primary">Live App</a>
+                    <a href="https://github.com/jatinpanigrahy/budget-app" target="_blank" class="btn btn-secondary">Source Code</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 </body>
 </html>
