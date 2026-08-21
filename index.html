@@ -47,7 +47,8 @@
             top: -100px;
             left: 50%;
             transform: translateX(-50%);
-            width: 600px;
+            width: 100vw;
+            max-width: 600px;
             height: 400px;
             background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, rgba(11, 12, 16, 0) 70%);
             z-index: -2;
@@ -121,7 +122,7 @@
 
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
             gap: 24px;
         }
 
@@ -256,7 +257,7 @@
                     <p class="project-desc">A streamlined web application for rapid text parsing, summarization, and insight extraction utilizing LLMs. It provides a smooth interface for transforming articles, notes, or web pages into structured insights, summaries, or social content instantly.</p>
                     <div class="tag-list">
                         <span class="tag">Python</span>
-                        <span class="tag">GenAI</span>                    
+                        <span class="tag">Gen-AI</span>                    
                         <span class="tag">Streamlit</span>
                         <span class="tag">Automation</span>
                     </div>
@@ -270,7 +271,7 @@
             <div class="project-card">
                 <div>
                     <h3 class="project-title">Github Intel Dashboard</h3>
-                    <p class="project-desc">A lightweight, efficient dashboard for analyzing public GitHub profiles. It's designed to provide instant insights into developer activity, repository structures, and tech stacks.</p>
+                    <p class="project-desc">A lightweight, efficient dashboard for analyzing public GitHub profiles. It's designed to provide instant insights into developer activity, repository structures, and tech stacks, as well as their social profiles.</p>
                     <div class="tag-list">
                         <span class="tag">Python</span>
                         <span class="tag">Streamlit</span>
