@@ -16,9 +16,10 @@
 
 ### 🛠 Tech Stack
 *   **Languages & Frameworks:** Python, Streamlit
+*   **Database & Storage:** SQLite
 *   **Concepts:** LLM Integration, Automation, RESTful APIs, Data Extraction, State Management
 *   **Libraries:** Pandas, Altair, requests, BeautifulSoup4, Google GenAI SDK
-*   **Frontend & Deployment:** GitHub Pages, Streamlit Community Cloud
+*   **Frontend & Deployment:** GitHub Pages, Streamlit Community Cloud, PythonAnywhere
 
 
 ---
