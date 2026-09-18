@@ -1,342 +1,427 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jatin Panigrahy | Portfolio</title>
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <style>
-        :root {
-            --bg-color: #0b0c10;
-            --card-bg: rgba(18, 20, 28, 0.75);
-            --card-bg-placeholder: rgba(18, 20, 28, 0.35);
-            --text-main: #ffffff;
-            --text-muted: #8892b0;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(255, 255, 255, 0.2);
-            --accent-bg: #ffffff;
-            --accent-text: #0b0c10;
-            --btn-hover: #c5c6c7;
-        }
+      :root {
+        --bg-color: #0b0c10;
+        --card-bg: rgba(18, 20, 28, 0.75);
+        --card-bg-placeholder: rgba(18, 20, 28, 0.35);
+        --text-main: #ffffff;
+        --text-muted: #8892b0;
+        --border-color: rgba(255, 255, 255, 0.08);
+        --border-hover: rgba(255, 255, 255, 0.2);
+        --accent-bg: #ffffff;
+        --accent-text: #0b0c10;
+        --btn-hover: #c5c6c7;
+      }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            position: relative;
-            overflow-x: hidden;
-        }
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        overflow-x: hidden;
+      }
 
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-            background-size: 24px 24px;
-            z-index: -1;
-            pointer-events: none;
-        }
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(
+          rgba(255, 255, 255, 0.07) 1px,
+          transparent 1px
+        );
+        background-size: 24px 24px;
+        z-index: -1;
+        pointer-events: none;
+      }
 
-        .ambient-glow {
-            position: absolute;
-            top: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100vw;
-            max-width: 600px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, rgba(11, 12, 16, 0) 70%);
-            z-index: -2;
-            pointer-events: none;
-        }
+      .ambient-glow {
+        position: absolute;
+        top: -100px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100vw;
+        max-width: 600px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          rgba(99, 102, 241, 0.08) 0%,
+          rgba(11, 12, 16, 0) 70%
+        );
+        z-index: -2;
+        pointer-events: none;
+      }
 
-        nav {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+      nav {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 40px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-        .nav-left, .nav-right {
-            display: flex;
-            gap: 24px;
-        }
+      .nav-left,
+      .nav-right {
+        display: flex;
+        gap: 24px;
+      }
 
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
+      nav a {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: color 0.2s ease;
+      }
 
-        nav a:hover {
-            color: var(--text-main);
-        }
+      nav a:hover {
+        color: var(--text-main);
+      }
 
-        .hero {
-            max-width: 800px;
-            margin: 80px auto 100px auto;
-            text-align: center;
-            padding: 0 24px;
-        }
+      .hero {
+        max-width: 800px;
+        margin: 80px auto 100px auto;
+        text-align: center;
+        padding: 0 24px;
+      }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            letter-spacing: -0.04em;
-            margin: 0 0 16px 0;
-            color: var(--text-main);
-            line-height: 1.1;
-        }
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        margin: 0 0 16px 0;
+        color: var(--text-main);
+        line-height: 1.1;
+      }
 
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            margin: 0;
-            font-weight: 400;
-        }
+      .hero p {
+        font-size: 1.25rem;
+        color: var(--text-muted);
+        margin: 0;
+        font-weight: 400;
+      }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 24px 120px 24px;
-        }
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 24px 120px 24px;
+      }
 
-        section h2, .container h2 {
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-muted);
-            margin-bottom: 32px;
-            text-align: center;
-        }
+      section h2,
+      .container h2 {
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-muted);
+        margin-bottom: 32px;
+        text-align: center;
+      }
 
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
-            gap: 24px;
-        }
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+        gap: 24px;
+      }
 
-        .project-card {
-            background-color: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 32px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-        }
+      .project-card {
+        background-color: var(--card-bg);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition:
+          transform 0.2s ease,
+          border-color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
 
-        .project-card:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
-        }
+      .project-card:hover {
+        border-color: var(--border-hover);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
+      }
 
-        .project-card.placeholder {
-            background-color: var(--card-bg-placeholder);
-            border-style: dashed;
-        }
+      .project-card.placeholder {
+        background-color: var(--card-bg-placeholder);
+        border-style: dashed;
+      }
 
-        .project-title {
-            font-size: 1.35rem;
-            font-weight: 600;
-            margin: 0 0 12px 0;
-            color: var(--text-main);
-            text-align: center;
-        }
+      .project-title {
+        font-size: 1.35rem;
+        font-weight: 600;
+        margin: 0 0 12px 0;
+        color: var(--text-main);
+        text-align: center;
+      }
 
-        .project-desc {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            margin: 0 0 24px 0;
-            line-height: 1.6;
-        }
+      .project-desc {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        margin: 0 0 24px 0;
+        line-height: 1.6;
+      }
 
-        .tag-list {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 28px;
-            flex-wrap: wrap;
-        }
+      .tag-list {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 28px;
+        flex-wrap: wrap;
+      }
 
-        .tag {
-            font-size: 0.75rem;
-            background-color: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            padding: 4px 10px;
-            border-radius: 20px;
-            color: var(--text-muted);
-            font-family: monospace;
-        }
+      .tag {
+        font-size: 0.75rem;
+        background-color: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border-color);
+        padding: 4px 10px;
+        border-radius: 20px;
+        color: var(--text-muted);
+        font-family: monospace;
+      }
 
-        .action-links {
-            display: flex;
-            gap: 12px;
-        }
+      .action-links {
+        display: flex;
+        gap: 12px;
+      }
 
-        .btn {
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
+      .btn {
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
 
-        .btn-primary {
-            background-color: var(--accent-bg);
-            color: var(--accent-text);
-        }
+      .btn-primary {
+        background-color: var(--accent-bg);
+        color: var(--accent-text);
+      }
 
-        .btn-primary:hover {
-            background-color: var(--btn-hover);
-        }
+      .btn-primary:hover {
+        background-color: var(--btn-hover);
+      }
 
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--text-main);
-            border: 1px solid var(--border-color);
-        }
+      .btn-secondary {
+        background-color: transparent;
+        color: var(--text-main);
+        border: 1px solid var(--border-color);
+      }
 
-        .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-color: var(--border-hover);
-        }
-        
-        .btn-disabled {
-            background-color: transparent;
-            color: var(--text-muted);
-            border: 1px dashed var(--border-color);
-            cursor: not-allowed;
-            pointer-events: none;
-        }
+      .btn-secondary:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-color: var(--border-hover);
+      }
+
+      .btn-disabled {
+        background-color: transparent;
+        color: var(--text-muted);
+        border: 1px dashed var(--border-color);
+        cursor: not-allowed;
+        pointer-events: none;
+      }
     </style>
-</head>
-<body>
+  </head>
 
+  <body>
     <div class="ambient-glow"></div>
 
     <nav>
-        <div class="nav-left">
-            <a href="#work">Work</a>
-        </div>
-        <div class="nav-right">
-            <a href="https://github.com/jatinpanigrahy" target="_blank">GitHub</a>
-        </div>
+      <div class="nav-left">
+        <a href="#work">Work</a>
+      </div>
+      <div class="nav-right">
+        <a href="https://github.com/jatinpanigrahy" target="_blank">GitHub</a>
+      </div>
     </nav>
 
     <div class="hero">
-        <h1>Hi, I'm Jatin Panigrahy.</h1>
-        <p>I'm an Engineering Student based in New Delhi.</p>
+      <h1>Hi, I'm Jatin Panigrahy.</h1>
+      <p>I'm an Engineering Student based in New Delhi.</p>
     </div>
 
     <div class="container" id="work">
-        <h2>My Projects</h2>
+      <h2>My Projects</h2>
 
-        <div class="project-grid">
-
-            <div class="project-card">
-                <div>
-                    <h3 class="project-title">URL Shortener</h3>
-                    <p class="project-desc">A lightweight, reliable and intuitive URL shortening application. It features custom aliasing, link expiration, URL management, as well as user profiles and analytics. It allows users to create, manage and track their shortened links, with a user-friendly interface.</p>
-                    <div class="tag-list">
-                        <span class="tag">Python</span>
-                        <span class="tag">Flask</span>                    
-                        <span class="tag">SQLite</span>
-                        <span class="tag">REST API</span>
-                    </div>
-                </div>
-                <div class="action-links">
-                    <a href="https://jatinpanigrahy.pythonanywhere.com" target="_blank" class="btn btn-primary">Live App</a>
-                    <a href="https://github.com/jatinpanigrahy/url-shortener-app" target="_blank" class="btn btn-secondary">Source Code</a>
-                </div>
+      <div class="project-grid">
+        <div class="project-card">
+          <div>
+            <h3 class="project-title">URL Shortener</h3>
+            <p class="project-desc">
+              A lightweight, reliable and intuitive URL shortening application.
+              It features custom aliasing, link expiration, URL management, as
+              well as user profiles and analytics. It allows users to create,
+              manage and track their shortened links, with a user-friendly
+              interface.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Python</span>
+              <span class="tag">Flask</span>
+              <span class="tag">SQLite</span>
+              <span class="tag">REST API</span>
             </div>
-            
-            <div class="project-card">
-                <div>
-                    <h3 class="project-title">Automated Text Intelligence</h3>
-                    <p class="project-desc">A streamlined web application for rapid text parsing, summarization, and insight extraction utilizing LLMs. It provides a smooth interface for transforming articles, notes, or web pages into structured insights, summaries, or social content instantly.</p>
-                    <div class="tag-list">
-                        <span class="tag">Python</span>
-                        <span class="tag">Gen-AI</span>                    
-                        <span class="tag">Streamlit</span>
-                        <span class="tag">Automation</span>
-                    </div>
-                </div>
-                <div class="action-links">
-                    <a href="https://jatinp-textintel.streamlit.app/" target="_blank" class="btn btn-primary">Live App</a>
-                    <a href="https://github.com/jatinpanigrahy/automated-text-intel" target="_blank" class="btn btn-secondary">Source Code</a>
-                </div>
-            </div>
-            
-            <div class="project-card">
-                <div>
-                    <h3 class="project-title">Github Intel Dashboard</h3>
-                    <p class="project-desc">A lightweight, efficient dashboard for analyzing public GitHub profiles. It's designed to provide instant insights into developer activity, repository structures, and tech stacks, as well as their social profiles.</p>
-                    <div class="tag-list">
-                        <span class="tag">Python</span>
-                        <span class="tag">Streamlit</span>
-                        <span class="tag">API-Integration</span>
-                        <span class="tag">Pandas</span>                       
-                    </div>
-                </div>
-                 <div class="action-links">
-                    <a href="https://jatinp-inteldashboard.streamlit.app/" target="_blank" class="btn btn-primary">Live App</a>
-                    <a href="https://github.com/jatinpanigrahy/github-intel-dashboard" target="_blank" class="btn btn-secondary">Source Code</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div>
-                    <h3 class="project-title">Budget Application</h3>
-                    <p class="project-desc">A minimal, responsive web application built to track personal finances, manage category-based budgets, and analyze spending distributions.</p>
-                    <div class="tag-list">
-                        <span class="tag">Python</span>
-                        <span class="tag">Streamlit</span>
-                        <span class="tag">Pandas</span>
-                    </div>
-                </div>
-                <div class="action-links">
-                    <a href="https://jatinp-budget.streamlit.app/" target="_blank" class="btn btn-primary">Live App</a>
-                    <a href="https://github.com/jatinpanigrahy/budget-app" target="_blank" class="btn btn-secondary">Source Code</a>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div>
-                    <h3 class="project-title">Settings Manager</h3>
-                    <p class="project-desc">A simple, interactive web dashboard built to manage, track and visualize user preferences.</p>
-                    <div class="tag-list">
-                        <span class="tag">Python</span>
-                        <span class="tag">Streamlit</span>
-                        <span class="tag">State Management</span>
-                    </div>
-                </div>
-                <div class="action-links">
-                    <a href="https://jatinp-settings.streamlit.app" target="_blank" class="btn btn-primary">Live App</a>
-                    <a href="https://github.com/jatinpanigrahy/settings-manager" target="_blank" class="btn btn-secondary">Source Code</a>
-                </div>
-            </div>
+          </div>
+          <div class="action-links">
+            <a
+              href="https://jatinpanigrahy.pythonanywhere.com"
+              target="_blank"
+              class="btn btn-primary"
+              >Live App</a
+            >
+            <a
+              href="https://github.com/jatinpanigrahy/url-shortener-app"
+              target="_blank"
+              class="btn btn-secondary"
+              >Source Code</a
+            >
+          </div>
         </div>
-    </div>
 
-</body>
+        <div class="project-card">
+          <div>
+            <h3 class="project-title">Automated Text Intelligence</h3>
+            <p class="project-desc">
+              A streamlined web application for rapid text parsing,
+              summarization, and insight extraction utilizing LLMs. It provides
+              a smooth interface for transforming articles, notes, or web pages
+              into structured insights, summaries, or social content instantly.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Python</span>
+              <span class="tag">Gen-AI</span>
+              <span class="tag">Streamlit</span>
+              <span class="tag">Automation</span>
+            </div>
+          </div>
+          <div class="action-links">
+            <a
+              href="https://jatinp-textintel.streamlit.app/"
+              target="_blank"
+              class="btn btn-primary"
+              >Live App</a
+            >
+            <a
+              href="https://github.com/jatinpanigrahy/automated-text-intel"
+              target="_blank"
+              class="btn btn-secondary"
+              >Source Code</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div>
+            <h3 class="project-title">Github Intel Dashboard</h3>
+            <p class="project-desc">
+              A lightweight, efficient dashboard for analyzing public GitHub
+              profiles. It's designed to provide instant insights into developer
+              activity, repository structures, and tech stacks, as well as their
+              social profiles.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Python</span>
+              <span class="tag">Streamlit</span>
+              <span class="tag">API-Integration</span>
+              <span class="tag">Pandas</span>
+            </div>
+          </div>
+          <div class="action-links">
+            <a
+              href="https://jatinp-inteldashboard.streamlit.app/"
+              target="_blank"
+              class="btn btn-primary"
+              >Live App</a
+            >
+            <a
+              href="https://github.com/jatinpanigrahy/github-intel-dashboard"
+              target="_blank"
+              class="btn btn-secondary"
+              >Source Code</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div>
+            <h3 class="project-title">Budget Application</h3>
+            <p class="project-desc">
+              A minimal, responsive web application built to track personal
+              finances, manage category-based budgets, and analyze spending
+              distributions.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Python</span>
+              <span class="tag">Streamlit</span>
+              <span class="tag">Pandas</span>
+            </div>
+          </div>
+          <div class="action-links">
+            <a
+              href="https://jatinp-budget.streamlit.app/"
+              target="_blank"
+              class="btn btn-primary"
+              >Live App</a
+            >
+            <a
+              href="https://github.com/jatinpanigrahy/budget-app"
+              target="_blank"
+              class="btn btn-secondary"
+              >Source Code</a
+            >
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div>
+            <h3 class="project-title">Settings Manager</h3>
+            <p class="project-desc">
+              A simple, interactive web dashboard built to manage, track and
+              visualize user preferences.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Python</span>
+              <span class="tag">Streamlit</span>
+              <span class="tag">State Management</span>
+            </div>
+          </div>
+          <div class="action-links">
+            <a
+              href="https://jatinp-settings.streamlit.app"
+              target="_blank"
+              class="btn btn-primary"
+              >Live App</a
+            >
+            <a
+              href="https://github.com/jatinpanigrahy/settings-manager"
+              target="_blank"
+              class="btn btn-secondary"
+              >Source Code</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
