@@ -31,7 +31,7 @@
 ### 🛠 Tech Stack
 
 - **Languages:** Python, JavaScript, SQL, HTML, CSS
-- **Frameworks & Libraries:** Streamlit, Pandas, Altair, BeautifulSoup4, Requests, Google GenAI SDK
+- **Frameworks & Libraries:** Flask, Streamlit, Pandas, Altair, BeautifulSoup4, Requests, Google GenAI SDK
 - **Databases:** SQLite
 - **Deployment & Hosting:** PythonAnywhere, Streamlit Community Cloud, GitHub Pages
 - **Focus Areas & Concepts:** LLM Integration, Web Scraping & Data Extraction, RESTful APIs, Automation
