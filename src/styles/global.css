@@ -15,7 +15,7 @@
   --border-subtle: #E4E4E7;
   --border-strong: #D4D4D8;
   --border-focus: #09090B;
-  --accent-glow: rgba(0, 0, 0, 0.05);
+  --accent-glow: rgba(0, 0, 0, 0.15);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,7 +30,7 @@
     --border-subtle: #27272A;
     --border-strong: #3F3F46;
     --border-focus: #FFFFFF;
-    --accent-glow: rgba(255, 255, 255, 0.05);
+    --accent-glow: rgba(255, 255, 255, 0.15);
   }
 }
 
@@ -53,6 +53,8 @@ html {
 body {
   min-height: 100vh;
   background-color: var(--bg-app);
+  background-image: radial-gradient(var(--border-strong) 1px, transparent 1px);
+  background-size: 24px 24px;
   color: var(--text-primary);
   font-family: var(--font-sans);
   line-height: 1.5;

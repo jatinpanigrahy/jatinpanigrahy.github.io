@@ -12,7 +12,7 @@ const { title, description, url, homepage, languages = [] } = Astro.props;
 
 <article class="card">
   <div class="card-content">
-    <div class="card-header">
+    <header style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem;">
       <h3 class="card-title text-xl">
         <a href={url} target="_blank" rel="noopener noreferrer" class="title-link">
           {title}
@@ -24,12 +24,13 @@ const { title, description, url, homepage, languages = [] } = Astro.props;
           target="_blank"
           rel="noopener noreferrer"
           class="secondary-link text-xs font-mono"
+          style="white-space: nowrap;"
           aria-label={`Live site for ${title}`}
         >
           Live ↗
         </a>
       )}
-    </div>
+    </header>
     <p class="card-description text-sm">
       {description}
     </p>
@@ -74,6 +75,7 @@ const { title, description, url, homepage, languages = [] } = Astro.props;
   }
 
   .card-title {
+    font-weight: 700;
     color: var(--text-primary);
     margin: 0;
     line-height: 1.3;
@@ -97,6 +99,7 @@ const { title, description, url, homepage, languages = [] } = Astro.props;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    white-space: nowrap;
     min-height: 44px;
     min-width: 44px;
     padding: 0 0.75rem;
