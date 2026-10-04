@@ -1,0 +1,78 @@
+---
+import '../styles/global.css';
+import ProjectCard from '../components/ProjectCard.astro';
+
+interface RepoNode {
+  name: string;
+  description: string | null;
+  url: string;
+  homepageUrl?: string;
+}
+
+const response = await fetch('https://api.github.com/graphql', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${import.meta.env.GITHUB_TOKEN}`,
+    'User-Agent': 'portfolio'
+  },
+  body: JSON.stringify({
+    query: `query { user(login: "jatinpanigrahy") { pinnedItems(first: 6, types: [REPOSITORY]) { nodes { ... on Repository { name description url homepageUrl } } } } }`
+  })
+});
+
+if (!response.ok) throw new Error('Failed to fetch pinned repos from GitHub API');
+const json = await response.json();
+if (json.errors) throw new Error(json.errors[0].message);
+const repos: RepoNode[] = json.data.user.pinnedItems.nodes;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.svg" />
+    <title>jatinpanigrahy</title>
+  </head>
+  <body>
+    <main class="max-w-readable">
+      <header class="header">
+        <h1 class="text-3xl font-sans">jatinpanigrahy</h1>
+      </header>
+      <section>
+        <div class="grid-12 grid">
+          {repos.map((repo) => (
+            <ProjectCard
+              title={repo.name}
+              description={repo.description || ''}
+              url={repo.url}
+              homepage={repo.homepageUrl}
+            />
+          ))}
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+
+<style>
+  main {
+    padding: 4rem 1.5rem;
+    min-height: 100vh;
+  }
+
+  .header {
+    margin-bottom: 2.5rem;
+  }
+
+  .grid-12 > :global(.card) {
+    grid-column: span 12;
+  }
+
+  @media (min-width: 640px) {
+    .grid-12 > :global(.card) {
+      grid-column: span 6;
+    }
+  }
+</style>
