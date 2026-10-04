@@ -2,11 +2,19 @@
 import '../styles/global.css';
 import ProjectCard from '../components/ProjectCard.astro';
 
+interface LanguageNode {
+  name: string;
+}
+
 interface RepoNode {
+  id: string;
   name: string;
   description: string | null;
   url: string;
   homepageUrl?: string;
+  languages?: {
+    nodes?: LanguageNode[];
+  };
 }
 
 const response = await fetch('https://api.github.com/graphql', {
@@ -17,14 +25,26 @@ const response = await fetch('https://api.github.com/graphql', {
     'User-Agent': 'portfolio'
   },
   body: JSON.stringify({
-    query: `query { user(login: "jatinpanigrahy") { pinnedItems(first: 6, types: [REPOSITORY]) { nodes { ... on Repository { name description url homepageUrl } } } } }`
+    query: `query {
+      user(login: "jatinpanigrahy") { pinnedItems(first: 6, types: [REPOSITORY]) { nodes { ... on Repository { id name description url homepageUrl languages(first: 3) { nodes { name } } } } } }
+      search(query: "user:jatinpanigrahy topic:featured sort:updated-desc", type: REPOSITORY, first: 10) { nodes { ... on Repository { id name description url homepageUrl languages(first: 3) { nodes { name } } } } }
+    }`
   })
 });
 
-if (!response.ok) throw new Error('Failed to fetch pinned repos from GitHub API');
+if (!response.ok) throw new Error('Fetch failed');
 const json = await response.json();
 if (json.errors) throw new Error(json.errors[0].message);
-const repos: RepoNode[] = json.data.user.pinnedItems.nodes;
+
+const pinned: RepoNode[] = json.data.user.pinnedItems.nodes || [];
+const featured: RepoNode[] = json.data.search.nodes || [];
+
+// Deduplicate based on 'id'
+const seen = new Set(pinned.map((r) => r.id));
+const combinedRepos: RepoNode[] = [...pinned];
+for (const r of featured) {
+  if (!seen.has(r.id)) combinedRepos.push(r);
+}
 ---
 
 <!DOCTYPE html>
@@ -37,17 +57,41 @@ const repos: RepoNode[] = json.data.user.pinnedItems.nodes;
   </head>
   <body>
     <main class="max-w-readable">
-      <header class="header">
-        <h1 class="text-3xl font-sans">jatinpanigrahy</h1>
+      <header class="hero">
+        <h1 class="hero-title text-3xl font-sans">jatinpanigrahy</h1>
+        <p class="hero-bio text-base">
+          Software engineer building minimalist, resilient systems and developer tools.
+        </p>
+        <div class="hero-links">
+          <a
+            href="https://github.com/jatinpanigrahy"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hero-link text-sm font-mono"
+            aria-label="GitHub profile"
+          >
+            GitHub ↗
+          </a>
+          <a
+            href="https://www.linkedin.com/in/jatinpanigrahy"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hero-link text-sm font-mono"
+            aria-label="LinkedIn profile"
+          >
+            LinkedIn ↗
+          </a>
+        </div>
       </header>
       <section>
         <div class="grid-12 grid">
-          {repos.map((repo) => (
+          {combinedRepos.map((repo) => (
             <ProjectCard
               title={repo.name}
               description={repo.description || ''}
               url={repo.url}
               homepage={repo.homepageUrl}
+              languages={repo.languages?.nodes?.map((l) => l.name) || []}
             />
           ))}
         </div>
@@ -62,8 +106,42 @@ const repos: RepoNode[] = json.data.user.pinnedItems.nodes;
     min-height: 100vh;
   }
 
-  .header {
-    margin-bottom: 2.5rem;
+  .hero {
+    margin-bottom: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .hero-title {
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .hero-bio {
+    color: var(--text-secondary);
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .hero-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    transition: color 0.15s ease;
+  }
+
+  .hero-link:hover {
+    color: var(--text-primary);
+    text-decoration: underline;
   }
 
   .grid-12 > :global(.card) {

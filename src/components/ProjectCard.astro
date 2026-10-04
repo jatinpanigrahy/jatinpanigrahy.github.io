@@ -4,33 +4,43 @@ export interface Props {
   description: string;
   url: string;
   homepage?: string;
+  languages?: string[];
 }
 
-const { title, description, url, homepage } = Astro.props;
+const { title, description, url, homepage, languages = [] } = Astro.props;
 ---
 
 <article class="card">
-  <div class="card-header">
-    <h3 class="card-title text-xl">
-      <a href={url} target="_blank" rel="noopener noreferrer" class="title-link">
-        {title}
-      </a>
-    </h3>
-    {homepage && (
-      <a
-        href={homepage}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="secondary-link text-xs font-mono"
-        aria-label={`Live site for ${title}`}
-      >
-        Live ↗
-      </a>
-    )}
+  <div class="card-content">
+    <div class="card-header">
+      <h3 class="card-title text-xl">
+        <a href={url} target="_blank" rel="noopener noreferrer" class="title-link">
+          {title}
+        </a>
+      </h3>
+      {homepage && (
+        <a
+          href={homepage}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="secondary-link text-xs font-mono"
+          aria-label={`Live site for ${title}`}
+        >
+          Live ↗
+        </a>
+      )}
+    </div>
+    <p class="card-description text-sm">
+      {description}
+    </p>
   </div>
-  <p class="card-description text-sm">
-    {description}
-  </p>
+  {languages && languages.length > 0 && (
+    <div class="card-tags">
+      {languages.map((lang) => (
+        <span class="tag">{lang}</span>
+      ))}
+    </div>
+  )}
 </article>
 
 <style>
@@ -42,12 +52,18 @@ const { title, description, url, homepage } = Astro.props;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 0.75rem;
+    gap: 1rem;
     transition: background-color 0.2s ease, border-color 0.2s ease;
   }
 
   .card:hover {
     background: var(--bg-card-hover);
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
   }
 
   .card-header {
@@ -101,5 +117,12 @@ const { title, description, url, homepage } = Astro.props;
     color: var(--text-secondary);
     line-height: 1.6;
     margin: 0;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
   }
 </style>
