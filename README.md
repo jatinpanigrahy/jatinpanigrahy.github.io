@@ -1,41 +1,62 @@
-# Jatin Panigrahy
+# Portfolio Website
 
-> I'm an Engineering Student based in New Delhi.
+A fast, interactive personal portfolio website. Built with Astro, featuring automated build-time data fetching and a clean, responsive design.
 
----
+**🔗 [View Live Application](https://jatinpanigrahy.github.io/)**
 
-### My Projects
+## Core Features
 
-- **[URL Shortener](https://github.com/jatinpanigrahy/url-shortener-app)**  
-  A lightweight URL shortening application featuring collision-resistant Base62 generation, custom aliases, customizable link expiration, and profile management.  
-  [🔗 View App](https://jatinpanigrahy.pythonanywhere.com)
+- **Dynamic Data:** Instantly view pinned and featured repositories pulled directly from GitHub.
+- **Language Analytics:** Displays the top programming languages used in each project.
+- **Zero-JS Frontend:** Achieves maximum performance by omitting client-side JavaScript entirely.
 
-- **[Content Analyzer](https://github.com/jatinpanigrahy/content-analyzer)**  
-A fast, responsive web application to analyze digital content using large language models. It extracts text from web pages, processes it into structured insights across eight specialized analysis modes, and generates export-ready Markdown and PDF reports.
-  [🔗 View App](https://jatinp-content-analyzer.streamlit.app)
+## Technical Overview
 
-- **[Github Developer Analytics](https://github.com/jatinpanigrahy/github-dev-analytics)**  
-A fast, interactive dashboard to visualize GitHub profiles and repository data in real-time. Built with Python and Streamlit, featuring automated caching and a clean, responsive design.
-  [🔗 View App](https://jatinp-gh-analytics.streamlit.app)
+The application interfaces directly with the GitHub GraphQL API during the build process. This build-time fetching ensures that no API tokens are exposed and no client-side requests are needed. It is backed by a continuous integration pipeline (GitHub Actions) for automated nightly rebuilds to keep the data synchronized.
 
-- **[Budget Tracker](https://github.com/jatinpanigrahy/budget-tracker)**  
-An interactive personal budget tracker and spending dashboard. Built with Python and Streamlit, featuring category-based budgeting, real-time analytics, and portable JSON data persistence.
-  [🔗 View App](https://jatinp-budget-tracker.streamlit.app)
+## UI & Design
 
-- **[Settings Manager](https://github.com/jatinpanigrahy/settings-manager)**  
-A clean, responsive dashboard to customize, organize, and back up application settings in real-time. Built with Python and Streamlit, featuring multi-profile switching, type-aware controls, and client-side JSON persistence.
-  [🔗 View App](https://settings-manager.streamlit.app)
+- **Clean, Focused Design:** A custom CSS theme provides a distraction-free, highly readable interface.
+- **Fast Loading:** The application relies on system fonts and CSS-only interactions to minimize loading times and reduce external dependencies.
 
----
+## Tech Stack
 
-### 🛠 Tech Stack
+- **Language:** TypeScript, HTML, CSS
+- **Framework:** Astro
+- **API:** GitHub GraphQL API
+- **CI/CD:** GitHub Actions
 
-- **Languages:** Python, JavaScript, SQL, HTML, CSS
-- **Frameworks & Libraries:** Flask, Streamlit, Pandas, Altair, BeautifulSoup4, Requests, Google GenAI SDK
-- **Databases:** SQLite
-- **Deployment & Hosting:** PythonAnywhere, Streamlit Community Cloud, GitHub Pages
-- **Focus Areas & Concepts:** LLM Integration, Web Scraping & Data Extraction, RESTful APIs, Automation
+## Running it Locally
 
----
+1. Ensure you have Node.js (v20 or higher) installed on your system.
 
-**[🌐 My Portfolio Website](https://jatinpanigrahy.github.io)**
+2. Clone the repository:
+
+   ```bash
+   git clone https://github.com/jatinpanigrahy/jatinpanigrahy.github.io.git
+   cd jatinpanigrahy.github.io
+   ```
+
+3. Install the required dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Create a `.env` file in the root directory and add your GitHub Personal Access Token (so it can fetch your pinned repos):
+
+   ```
+   GITHUB_TOKEN=your_personal_access_token
+   ```
+
+5. Launch the local development server:
+
+   ```bash
+   npm run dev
+   ```
+
+## Deployment
+
+This application is deployed and hosted via GitHub Pages, with a nightly GitHub Actions cron job automating the build process.
+
+**Live Application:** <https://jatinpanigrahy.github.io/>
