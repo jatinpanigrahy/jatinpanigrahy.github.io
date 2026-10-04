@@ -23,7 +23,7 @@
   :root {
     --bg-app: #000000;
     --bg-panel: #0A0A0A;
-    --bg-card: #111111;
+    --bg-card: #18181B;
     --bg-card-hover: #1A1A1A;
     --text-primary: #EDEDED;
     --text-secondary: #A1A1AA;
@@ -125,7 +125,7 @@ body {
 }
 
 .max-w-readable {
-  max-width: 800px;
+  max-width: 1024px;
   margin-inline: auto;
   width: 100%;
 }
@@ -135,7 +135,9 @@ body {
   position: relative;
   overflow: hidden;
   padding: 2rem;
-  min-height: 220px;
+  min-height: 320px;
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 }
 
 .card::before {
@@ -198,3 +200,5 @@ body {
     opacity: 0.5;
   }
 }
+
+@media (max-width: 768px) { .grid-12 { display: flex !important; flex-direction: column !important; } }
