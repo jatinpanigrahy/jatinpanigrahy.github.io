@@ -16,6 +16,7 @@
   --border-strong: #D4D4D8;
   --border-focus: #09090B;
   --accent-glow: rgba(0, 0, 0, 0.15);
+  --bg-dot: rgba(0, 0, 0, 0.05);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,6 +32,7 @@
     --border-strong: #3F3F46;
     --border-focus: #FFFFFF;
     --accent-glow: rgba(255, 255, 255, 0.15);
+    --bg-dot: rgba(255, 255, 255, 0.05);
   }
 }
 
@@ -53,7 +55,7 @@ html {
 body {
   min-height: 100vh;
   background-color: var(--bg-app);
-  background-image: radial-gradient(var(--border-strong) 1px, transparent 1px);
+  background-image: radial-gradient(var(--bg-dot) 1px, transparent 1px);
   background-size: 24px 24px;
   color: var(--text-primary);
   font-family: var(--font-sans);
@@ -119,7 +121,7 @@ body {
 .grid-12 {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 24px;
+  gap: 2.5rem;
 }
 
 .max-w-readable {
@@ -132,6 +134,8 @@ body {
 .card {
   position: relative;
   overflow: hidden;
+  padding: 2rem;
+  min-height: 220px;
 }
 
 .card::before {

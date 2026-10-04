@@ -49,7 +49,7 @@ for (const r of featured) {
 }
 
 const formatTitle = (str: string) => str.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-const ignoredLangs = new Set(['Procfile', 'HTML', 'CSS', 'SCSS', 'Jupyter Notebook']);
+const ignoredLangs = new Set(['Procfile', 'Dockerfile', 'Makefile', 'Jupyter Notebook']);
 combinedRepos.forEach(repo => {
   repo.formattedName = formatTitle(repo.name);
   repo.filteredLangs = repo.languages?.nodes?.map(l=>l.name).filter(l => !ignoredLangs.has(l)).slice(0, 3) || [];
@@ -67,7 +67,7 @@ combinedRepos.forEach(repo => {
   <body>
     <main class="max-w-readable">
       <header style="text-align: center; margin-top: 10vh; margin-bottom: 5rem; display: flex; flex-direction: column; align-items: center; gap: 1rem;">
-        <h1 class="hero-title text-3xl font-sans">Jatin Panigrahy</h1>
+        <h1 class="hero-title text-4xl font-sans" style="font-weight: 800;">Jatin Panigrahy</h1>
         <p class="hero-bio text-base">
           Software engineer building minimalist, resilient systems and developer tools.
         </p>
@@ -93,6 +93,7 @@ combinedRepos.forEach(repo => {
         </div>
       </header>
       <section>
+        <h2 class="text-2xl" style="margin-bottom: 2rem; color: var(--text-secondary); text-align: center;">My Projects</h2>
         <div class="grid-12 grid">
           {combinedRepos.map((repo) => (
             <ProjectCard
@@ -123,7 +124,7 @@ combinedRepos.forEach(repo => {
   }
 
   .hero-title {
-    font-weight: 700;
+    font-weight: 800;
     color: var(--text-primary);
   }
 
